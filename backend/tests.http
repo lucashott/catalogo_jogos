@@ -1,0 +1,63 @@
+### LISTAR (200)
+GET http://localhost:3012/api/games
+
+### GET por ID (200)
+GET http://localhost:3012/api/games/1
+
+### GET por ID inexistente (404)
+GET http://localhost:3012/api/games/99999
+
+### CRIAR válido (201)
+POST http://localhost:3012/api/games
+Content-Type: application/json
+
+{
+  "nome": "Halo",
+  "tipo": "FPS",
+  "ano": 2001
+}
+
+### CRIAR inválido - falta campo (400)
+POST http://localhost:3012/api/games
+Content-Type: application/json
+
+{
+  "nome": "SemAno",
+  "tipo": "Aventura"
+}
+
+### ATUALIZAR válido (200)
+PUT http://localhost:3012/api/games/1
+Content-Type: application/json
+
+{
+  "nome": "Zelda",
+  "tipo": "Aventura",
+  "ano": 1998
+}
+
+### ATUALIZAR inválido - ano fora do range (400)
+PUT http://localhost:3012/api/games/1
+Content-Type: application/json
+
+{
+  "nome": "Zelda",
+  "tipo": "Aventura",
+  "ano": 1492
+}
+
+### ATUALIZAR ID inexistente (404)
+PUT http://localhost:3012/api/games/99999
+Content-Type: application/json
+
+{
+  "nome": "X",
+  "tipo": "Y",
+  "ano": 2000
+}
+
+### EXCLUIR válido (204)
+DELETE http://localhost:3012/api/games/1
+
+### EXCLUIR ID inexistente (404)
+DELETE http://localhost:3012/api/games/99999

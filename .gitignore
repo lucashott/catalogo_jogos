@@ -1,0 +1,12 @@
+# Node
+node_modules/
+.env
+
+# Angular
+/frontend/frontend/.angular/cache
+/frontend/frontend/dist
+/frontend/frontend/node_modules
+
+# Docker
+*.pid
+*.sock

@@ -1,0 +1,9 @@
+{
+    "/games": {
+      "target": "http://localhost:3011",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

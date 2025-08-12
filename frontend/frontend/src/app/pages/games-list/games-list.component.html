@@ -1,0 +1,62 @@
+<div class="page">
+
+<h2>Catálogo de Jogos</h2>
+
+<form [formGroup]="form" (ngSubmit)="enviar()" class="form">
+    <div class="row">
+      <label>Nome</label>
+      <input formControlName="nome" placeholder="Ex: The Legend of Zelda" />
+      <small *ngIf="form.get('nome')?.touched && form.get('nome')?.invalid">
+        Informe um nome válido.
+      </small>
+    </div>
+  
+    <div class="row">
+      <label>Tipo</label>
+      <input formControlName="tipo" placeholder="Ex: Aventura" />
+      <small *ngIf="form.get('tipo')?.touched && form.get('tipo')?.invalid">
+        Informe um tipo válido.
+      </small>
+    </div>
+  
+    <div class="row">
+      <label>Ano</label>
+      <input type="number" formControlName="ano" />
+      <small *ngIf="form.get('ano')?.touched && form.get('ano')?.invalid">
+        Ano entre 1950 e 2100.
+      </small>
+    </div>
+  
+    <div class="actions">
+      <button type="submit">{{ editandoId ? 'Salvar' : 'Adicionar' }}</button>
+      <button type="button" (click)="cancelarEdicao()" *ngIf="editandoId">Cancelar</button>
+    </div>
+  </form>
+  
+
+<div *ngIf="carregando">Carregando...</div>
+<div *ngIf="erro" class="erro">{{ erro }}</div>
+
+<table class="tabela" *ngIf="!carregando && jogos?.length">
+  <thead>
+    <tr>
+      <th>ID</th><th>Nome</th><th>Tipo</th><th>Ano</th><th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let j of jogos">
+      <td>{{ j.id }}</td>
+      <td>{{ j.nome }}</td>
+      <td>{{ j.tipo }}</td>
+      <td>{{ j.ano }}</td>
+      <td class="acoes">
+        <button (click)="editar(j)">Editar</button>
+        <button (click)="excluir(j)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!carregando && !jogos?.length">Nenhum jogo cadastrado.</p>
+</div>
+
